@@ -14,4 +14,12 @@ router.get("/addBreed", (req, res) => {
   res.render("post/addBreed");
 });
 
+router.post("/addCat", async (req, res) => {
+  const { name, description, image, breed } = req.body;
+  const payload = { name, description, image, breed };
+
+  await catService.create(payload);
+  res.redirect("/cats/all");
+});
+
 module.exports = router;
