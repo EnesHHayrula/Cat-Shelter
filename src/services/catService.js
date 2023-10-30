@@ -1,26 +1,12 @@
-const cats = [];
-const uuid = require("uuid");
+const Cat = require("../models/Cat");
 
-exports.create = (catData) => {
-  const newCat = {
-    id: uuid(),
-    ...cubeData,
-  };
-  cats.push(newCat);
-  return newCat;
-};
+exports.create = (catData) => Cat.create(catData);
 
-exports.getAll = (search) => {
-  let filteredCats = [...cats];
-  if (search) {
-    filteredCats = filteredCats.filter((cat) =>
-      cat.name.toLowerCase().includes(search.toLowerCase())
-    );
-  }
+exports.getAll = () => Cat.find();
 
-  return filteredCats;
-};
+exports.getSingleCat = (catId) => Cat.findById(catId);
 
-exports.getSingleCat = (id) => {
-  return cats.find((cat) => cat.id === id);
-};
+exports.update = (catId, catData) => Cat.findByIdAndUpdate(catId, catData);
+
+exports.delete = (catId) => Cat.findByIdAndDelete(catId);
+
